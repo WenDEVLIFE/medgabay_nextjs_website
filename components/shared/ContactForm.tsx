@@ -40,7 +40,7 @@ export function ContactForm() {
                                 </div>
                                 <div>
                                     <p className="text-sm text-foreground/50 font-black uppercase tracking-widest italic">Visit Us</p>
-                                    <p className="text-lg font-black italic text-foreground-rich">Metro Manila, Philippines</p>
+                                    <p className="text-lg font-black italic text-foreground-rich">Davao City, Philippines</p>
                                 </div>
                             </div>
                         </div>
