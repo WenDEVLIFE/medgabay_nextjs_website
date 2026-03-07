@@ -1,21 +1,48 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors */
+  --natural-green: #388659;
+  --natural-green-dark: #2D6A4F;
+  --vivid-orange: #F45D01;
+  --amber-glow: #FFB627;
+  --soft-black: #2E2E3A;
+  --pure-white: #FFFFFF;
+
+  /* Semantic Colors */
+  --background: var(--pure-white);
+  --foreground: var(--soft-black);
+  --primary: var(--natural-green);
+  --secondary: var(--vivid-orange);
+  --accent: var(--amber-glow);
+  
+  /* Opacity Variants (Tailwind 4 can handle opacity with color-mix or /opacity) */
+  --natural-green-light: color-mix(in srgb, var(--natural-green) 90%, transparent);
+  --amber-glow-light: color-mix(in srgb, var(--amber-glow) 30%, transparent);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--natural-green-dark);
+  --color-primary-light: var(--natural-green-light);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-accent-light: var(--amber-glow-light);
+  --color-soft-black: var(--soft-black);
+  
+  --background-image-main-gradient: linear-gradient(to bottom right, var(--natural-green), var(--amber-glow));
+  --background-image-deep-gradient: linear-gradient(to bottom right, var(--natural-green), var(--natural-green-dark));
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #121212;
+    --foreground: #FFFFFF;
   }
 }
 
