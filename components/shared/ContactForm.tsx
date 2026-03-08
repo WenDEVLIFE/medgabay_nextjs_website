@@ -25,10 +25,21 @@ export function ContactForm() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || "";
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
         setSubmitStatus({ type: null, message: "" });
+
+        if (!recaptchaSiteKey) {
+            setSubmitStatus({
+                type: "error",
+                message: "reCAPTCHA is not configured. Please add NEXT_PUBLIC_RECAPTCHA_SITE_KEY to your environment variables.",
+            });
+            setIsSubmitting(false);
+            return;
+        }
 
         const token = recaptchaRef.current?.getValue();
         if (!token) {
@@ -170,10 +181,16 @@ export function ContactForm() {
                             </div>
 
                             <div className="flex justify-center py-2">
-                                <ReCAPTCHA
-                                    ref={recaptchaRef}
-                                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""}
-                                />
+                                {recaptchaSiteKey ? (
+                                    <ReCAPTCHA
+                                        ref={recaptchaRef}
+                                        sitekey={recaptchaSiteKey}
+                                    />
+                                ) : (
+                                    <div className="text-xs text-red-500 font-bold italic">
+                                        reCAPTCHA Site Key missing
+                                    </div>
+                                )}
                             </div>
 
                             {submitStatus.type && (
